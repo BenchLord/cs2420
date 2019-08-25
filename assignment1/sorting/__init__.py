@@ -37,6 +37,3 @@ def selectionSort(l):
     passes += 1
   passes += 1
   return passes, (datetime.datetime.now() - start).microseconds
-
-if __name__ == "__main__":
-    pass
