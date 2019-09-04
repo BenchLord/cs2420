@@ -15,24 +15,37 @@ def printInfo(passes, micros):
 def main():
   # test bubble sort
   randomList = createRandomList(10)
+  randomList2 = randomList[:]
+  randomList3 = randomList[:]
   expectedResult = sorted(randomList[:])
-  passes, micros = sorting.bubbleSort(randomList)
-  if Test("Bubble sort").assertEqual(randomList, expectedResult):
-    printInfo(passes, micros)
+
+  print("Generated list: ", randomList)
+  print("Expected result: ", expectedResult)
+  sorting.bubbleSort(randomList)
+  print("After Bubble sort: ", randomList)
+  sorting.selectionSort(randomList2)
+  print("After selection sort: ", randomList2)
+  sorting.shakerSort(randomList3)
+  print("After shaker sort: ", randomList3)
+
+
+  # passes, micros = sorting.bubbleSort(randomList)
+  # if Test("Bubble sort").assertEqual(randomList, expectedResult):
+  #   printInfo(passes, micros)
 
   # test selection sort
-  randomList = createRandomList(10)
-  expectedResult = sorted(randomList[:])
-  passes, micros = sorting.selectionSort(randomList)
-  if Test("Selection sort").assertEqual(randomList, expectedResult):
-    printInfo(passes, micros)
+  # randomList = createRandomList(10)
+  # expectedResult = sorted(randomList[:])
+  # passes, micros = sorting.selectionSort(randomList)
+  # if Test("Selection sort").assertEqual(randomList, expectedResult):
+  #   printInfo(passes, micros)
 
   # test shaker sort
-  randomList = createRandomList(10)
-  expectedResult = sorted(randomList[:])
-  passes, micros = sorting.shakerSort(randomList)
-  if Test("Shaker sort").assertEqual(randomList, expectedResult):
-    printInfo(passes, micros)
+  # randomList = createRandomList(10)
+  # expectedResult = sorted(randomList[:])
+  # passes, micros = sorting.shakerSort(randomList)
+  # if Test("Shaker sort").assertEqual(randomList, expectedResult):
+  #   printInfo(passes, micros)
 
 if __name__ == "__main__":
   main()
