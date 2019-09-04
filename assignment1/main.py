@@ -27,5 +27,12 @@ def main():
   if Test("Selection sort").assertEqual(randomList, expectedResult):
     printInfo(passes, micros)
 
+  # test shaker sort
+  randomList = createRandomList(10)
+  expectedResult = sorted(randomList[:])
+  passes, micros = sorting.shakerSort(randomList)
+  if Test("Shaker sort").assertEqual(randomList, expectedResult):
+    printInfo(passes, micros)
+
 if __name__ == "__main__":
   main()
