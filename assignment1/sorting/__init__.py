@@ -70,3 +70,27 @@ def selectionSort(l):
 
 def mergeSort(l):
   pass
+
+def quickSort(a, low, high, modified=False):
+  # if modified than swap the middle index for the low index
+  # for loop from low + 1 to high
+  # swap smaller than pivot for leftmost bigger than pivot
+  # swap pivot for rightmost smaller than pivot
+  # recurse with values left of pivot & values right of pivot
+
+  # base case is 1 or 0 items. if high - low <= 0
+  if high - low <= 0:
+    return
+  if modified:
+    mid = (low + high) // 2
+    a[low],a[mid] = a[mid], a[low]
+  pivot = low
+  lmgt = low + 1
+  for i in range(low+1, high+1):
+    if a[i] < a[pivot]:
+      a[i], a[lmgt] = a[lmgt], a[i]
+      lmgt += 1
+  pivot = lmgt - 1
+  a[low], a[pivot] = a[pivot], a[low]
+  quickSort(a, low, pivot - 1, modified)
+  quickSort(a, pivot + 1, high, modified)

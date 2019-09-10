@@ -17,6 +17,8 @@ def main():
   randomList = createRandomList(10)
   randomList2 = randomList[:]
   randomList3 = randomList[:]
+  randomList4 = randomList[:]
+  randomList5 = randomList[:]
   expectedResult = sorted(randomList[:])
 
   print("Generated list: ", randomList)
@@ -28,6 +30,11 @@ def main():
   sorting.shakerSort(randomList3)
   print("After shaker sort: ", randomList3)
 
+  sorting.mergeSort(randomList4)
+  print("After merge sort: ", randomList4)
+
+  sorting.quickSort(randomList5, 0, len(randomList5) - 1)
+  print("After quick sort: ", randomList5)
 
   # passes, micros = sorting.bubbleSort(randomList)
   # if Test("Bubble sort").assertEqual(randomList, expectedResult):
