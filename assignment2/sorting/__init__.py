@@ -1,9 +1,7 @@
 import datetime
 
 def bubbleSort(l):
-  start = datetime.datetime.now()
   done = False
-  passes = 0
   while not done:
     done = True
     left = len(l) - 1
@@ -15,18 +13,14 @@ def bubbleSort(l):
         l[i+1] = old
         done = False
     left -= 1
-    passes += 1
-  return passes, (datetime.datetime.now() - start).microseconds
+  return
 
 def shakerSort(l):
-  start = datetime.datetime.now()
   done = False
-  passes = 0
   left = 0
   right = len(l) - 1
   while not done:
     done = True
-    passes += 1
     # pass from left to right
     for i in range(left, right):
       if l[i] > l[i+1]:
@@ -37,7 +31,6 @@ def shakerSort(l):
     if done:
       break
     right -= 1
-    passes += 1
     # pass from right to left
     for i in range(right, left, -1):
       if l[i] < l[i-1]:
@@ -48,11 +41,9 @@ def shakerSort(l):
     if done:
       break
     left += 1
-  return passes, (datetime.datetime.now() - start).microseconds
+  return
 
 def selectionSort(l):
-  start = datetime.datetime.now()
-  passes = 0
   for i in range(len(l) - 1):
     newIndex = i
     # find smallest out of remaining numbers
@@ -64,18 +55,32 @@ def selectionSort(l):
       old = l[i]
       l[i] = l[newIndex]
       l[newIndex] = old
-    passes += 1
-  passes += 1
-  return passes, (datetime.datetime.now() - start).microseconds
+  return
 
 # measure swaps by
 def mergeSort(l):
-  pass
+  if len(l) <= 1:
+    return
+  half = len(l) // 2
+  left = l[:half]
+  right = l[half:]
+  mergeSort(left)
+  mergeSort(right)
+  for i in range(len(l)):
+    if len(left) > 0 and len(right) > 0:
+      if left[0] < right[0]:
+        l[i] = left.pop(0)
+      else:
+        l[i] = right.pop(0)
+    elif len(left) > 0:
+      l[i] = left.pop(0)
+    else:
+      l[i] = right.pop(0)
 
 def countingSort(l):
   # create new list with same length as l
-  counts = [0]*len(l) 
-  for num in l: 
+  counts = [0]*len(l)
+  for num in l:
     # increment counts at index num by 1 for
     # every instance of num in l
     counts[num] += 1

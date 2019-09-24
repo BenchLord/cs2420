@@ -13,7 +13,6 @@ def printInfo(passes, micros):
   print(" %d passes in %dμs" % (passes, micros))
 
 def main():
-  # test bubble sort
   randomList = createRandomList(10)
   randomList2 = randomList[:]
   randomList3 = randomList[:]
@@ -35,24 +34,6 @@ def main():
 
   sorting.quickSort(randomList5, 0, len(randomList5) - 1)
   print("After quick sort: ", randomList5)
-
-  # passes, micros = sorting.bubbleSort(randomList)
-  # if Test("Bubble sort").assertEqual(randomList, expectedResult):
-  #   printInfo(passes, micros)
-
-  # test selection sort
-  # randomList = createRandomList(10)
-  # expectedResult = sorted(randomList[:])
-  # passes, micros = sorting.selectionSort(randomList)
-  # if Test("Selection sort").assertEqual(randomList, expectedResult):
-  #   printInfo(passes, micros)
-
-  # test shaker sort
-  # randomList = createRandomList(10)
-  # expectedResult = sorted(randomList[:])
-  # passes, micros = sorting.shakerSort(randomList)
-  # if Test("Shaker sort").assertEqual(randomList, expectedResult):
-  #   printInfo(passes, micros)
 
 if __name__ == "__main__":
   main()
