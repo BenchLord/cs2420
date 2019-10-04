@@ -1,8 +1,27 @@
 from graphics import *
+import stack
+
+def InfixToPostfix(expr):
+  pass
+
+def EvaluatePostfix(s):
+  while 2 < s.size():
+    if s.off() == "+":
+      left = s.off()
+      right = s.off()
+      s.on(left + right)
+  return s.off()
+
+
+def test_stack():
+  s = stack.Stack()
+  s.on(3)
+  s.on(5)
+  s.on("+")
+  print(EvaluatePostfix(s))
 
 def main():
   points = []
-
   LOWX = -10
   HIGHX = +10
   LOWY = -10
@@ -28,4 +47,5 @@ def main():
   win.close()
 
 if __name__ == "__main__":
-  main()
+  # main()
+  test_stack()

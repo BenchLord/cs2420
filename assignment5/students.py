@@ -24,7 +24,7 @@ def show_progress(percent, segments):
 
 def insertStudents(students):
   time_started = time.time()
-  duplicates = 0
+  duplicates = []
   lines = open("../data/InsertNames.txt", "r").readlines()
   total_lines = len(lines)
   print("Inserting students")
@@ -35,11 +35,13 @@ def insertStudents(students):
     new_student = Student(split_line[0], split_line[1], split_line[2], split_line[3], split_line[4])
     for student in students:
       if student.ssn == new_student.ssn:
-        duplicates += 1
+        duplicates.append(new_student)
         continue
     students.append(new_student)
   time_elapsed = (time.time() - time_started)
-  print("LINES:%11d\nDUPLICATES:%6d\nSECONDS: %8d" % (total_lines, duplicates, time_elapsed))
+  print("LINES:%11d\nSECONDS: %8d\nDUPLICATES:" % (total_lines, time_elapsed))
+  for student in duplicates:
+    print(" %s %s" % (student.fname, student.lname))
 
 def averageAge(students):
   average_age = 0

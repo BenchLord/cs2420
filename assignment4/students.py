@@ -36,6 +36,7 @@ def main():
     for student in students:
       if student.ssn == new_student.ssn:
         duplicates += 1
+        print("Duplicate student: %s %s" % (new_student.fname, new_student.lname))
         continue
     students.append(new_student)
   time_elapsed = (time.time() - time_started)
