@@ -1,11 +1,15 @@
 class Stack:
   def __init__(self):
     self.mStack = []
-  def on(self, value):
+  def push(self, value):
     self.mStack.append(value)
-  def off(self):
+  def pop(self):
     return self.mStack.pop()
-  def empty(self):
+  def isEmpty(self):
     return len(self.mStack) < 1
   def size(self):
     return len(self.mStack)
+  def top(self):
+    if self.isEmpty():
+      return ""
+    return self.mStack[-1]
