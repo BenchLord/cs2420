@@ -69,16 +69,16 @@ def getPoints(expression, low, high, inc):
 def drawGraph(window, expression, points, number):
   colors = ["blue", "green", "red", "orange", "purple", "pink"]
   currentColor = colors[number % len(colors)]
+  yPos = 10 - number
+  t = Text(Point(-8, yPos), expression)
+  t.setFill(currentColor)
+  t.setSize(15)
+  t.draw(window)
   for i in range(len(points)-1):
     l = Line(Point(points[i][0], points[i][1]), Point(points[i+1][0], points[i+1][1]))
     l.setFill(currentColor)
     l.draw(window)
-    yPos = 10 - number
-    t = Text(Point(-8, yPos), expression)
-    t.setFill(currentColor)
-    t.setSize(15)
-    t.draw(window)
-
+    
 def loop():
   LOWX = -10
   HIGHX = +10
