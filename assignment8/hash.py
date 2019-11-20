@@ -17,7 +17,6 @@ class Hash:
     while not isPrime(size):
       size += 1
     self.mTable = [None] * size
-    print("done")
     
   def Exists(self, item):
     key = int(item)
