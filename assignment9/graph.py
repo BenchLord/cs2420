@@ -1,7 +1,9 @@
+from stack import Stack
+from queue import Queue
 
 class Graph:
   def __init__(self, numVertices):
-    self.mVertices = [[False] * numVertices for i in range(numVertices)] 
+    self.mVertices = [[] for i in range(numVertices)]
     self.mNumVertices = numVertices
 
   def indexValid(self, v):
@@ -12,23 +14,65 @@ class Graph:
       return False
     if self.isEdge(v0, v1) or v0 == v1:
       return False
-    self.mVertices[v0][v1] = True
+    self.mVertices[v0].append(v1)
     return True
 
-  def findPath(self, v0, v1):
-    pass
+  def findPathDepth(self, v0, v1): # Returns None if no path is found
+    s = Stack()
+    s.push(v0)
+    visited = [False] * len(self.mVertices)
+    visited[v0] = True
+    while not s.isEmpty():
+      if s.top() == v1:
+        path = [s.pop()]
+        while not s.isEmpty():
+          path.append(s.pop())
+        path.reverse()
+        return path
+      deadEnd = True
+      neighbors = self.mVertices[s.top()]
+      for neighbor in neighbors:
+        if not visited[neighbor]:
+          s.push(neighbor)
+          visited[neighbor] = True
+          deadEnd = False
+          break
+      if deadEnd:
+        s.pop()
+    return None
+
+  def findPathBreadth(self, v0, v1): # Returns None if no path is found
+    q = Queue()
+    f = [-1] * self.mNumVertices
+    q.enqueue(v0)
+    f[v0] = v0
+    while not q.isEmpty():
+      current = q.dequeue()
+      if current == v1:
+        path = [current]
+        index = f[current]
+        while not index == v0:
+          path.append(index)
+          index = f[index]
+        path.append(v0)
+        path.reverse()
+        return path
+      for neighbor in self.getNeighbors(current):
+        if f[neighbor] == -1:
+          q.enqueue(neighbor)
+          f[neighbor] = current
+    return None
 
   def getNeighbors(self, v):
     if not self.indexValid(v):
-      return []
-    neighbors = []
-    for i in range(len(self.mVertices[v])):
-      if self.mVertices[v][i]:
-        neighbors.append(i)
-    return neighbors
+      return None
+    return self.mVertices[v]
 
   def isEdge(self, v0, v1):
     if not (self.indexValid(v0) and self.indexValid(v1)):
       return False
-    return self.mVertices[v0][v1]
+    for i in range(len(self.mVertices[v0])):
+      if self.mVertices[i] == v1:
+        return True
+    return False
 

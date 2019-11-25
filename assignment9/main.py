@@ -1,14 +1,24 @@
 from graph import Graph
 
 def main():
-  g = Graph(5)
-  print("adding edge between vertex 0 and 4")
-  g.addEdge(0, 4)
-  for vertex in g.mVertices:
-    print(vertex)
-  print("trying to add edge between invalid vertices 10 and 20")
-  ok = g.addEdge(10, 20)
-  print(ok)
+  fin = open("data.txt", "r")
+  numVertices = int(fin.readline())
+  g = Graph(numVertices)
+  numEdges = int(fin.readline())
+  for i in range(numEdges):
+    edge = fin.readline().split(" ")
+    v0 = int(edge[0])
+    v1 = int(edge[1])
+    g.addEdge(v0, v1)
+  numTests = int(fin.readline())
+  for i in range(numTests):
+    vertices = fin.readline().split(" ")
+    v0 = int(vertices[0])
+    v1 = int(vertices[1])
+    path = g.findPathDepth(v0, v1)
+    print("Depth first: path between %d and %d: %s" % (v0, v1, path))
+    path = g.findPathBreadth(v0, v1)
+    print("Breadth first: path between %d and %d: %s" %(v0, v1, path))
 
 if __name__ == "__main__":
   main()
